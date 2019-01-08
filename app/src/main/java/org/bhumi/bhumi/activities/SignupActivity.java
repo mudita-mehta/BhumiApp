@@ -20,8 +20,8 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import org.bhumi.bhumi.R;
-import org.bhumi.bhumi.API.Endpoint;
-import org.bhumi.bhumi.API.Validator;
+import org.bhumi.bhumi.api.Endpoint;
+import org.bhumi.bhumi.api.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 import org.bhumi.bhumi.R;
-import org.bhumi.bhumi.API.Endpoint;
-import org.bhumi.bhumi.API.Validator;
+import org.bhumi.bhumi.api.Endpoint;
+import org.bhumi.bhumi.api.Validator;
 import org.json.JSONObject;
 
 import okhttp3.Call;

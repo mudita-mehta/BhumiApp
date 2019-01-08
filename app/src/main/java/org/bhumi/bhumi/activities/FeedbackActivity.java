@@ -15,9 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.bhumi.bhumi.R;
-import org.bhumi.bhumi.API.Endpoint;
-import org.bhumi.bhumi.API.User;
-import org.bhumi.bhumi.API.Validator;
+import org.bhumi.bhumi.api.Endpoint;
+import org.bhumi.bhumi.api.User;
+import org.bhumi.bhumi.api.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
