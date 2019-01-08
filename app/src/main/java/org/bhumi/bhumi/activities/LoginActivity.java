@@ -193,7 +193,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(context, MainActivity.class);
+                                Intent intent = new Intent(context, HomeActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 Toast.makeText(context, msg, Toast.LENGTH_LONG).show();

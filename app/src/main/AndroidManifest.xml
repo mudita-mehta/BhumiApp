@@ -17,64 +17,60 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="org.bhumi.bhumi.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.bhumi.bhumi.activities.SignupActivity"
+            android:name=".activities.SignupActivity"
             android:label="Signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.bhumi.bhumi.activities.MainActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="org.bhumi.bhumi.activities.CreditActivity"
+            android:name=".activities.CreditActivity"
             android:label="Credits"
-            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
+            android:parentActivityName=".activities.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumi.activities.MainActivity" />
+                android:value="org.bhumi.bhumi.activities.HomeActivity" />
         </activity>
         <activity
-            android:name="org.bhumi.bhumi.activities.PasswordResetActivity"
+            android:name=".activities.PasswordResetActivity"
             android:label="Reset Password"
-            android:parentActivityName="org.bhumi.bhumi.activities.LoginActivity">
+            android:parentActivityName=".activities.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.bhumi.bhumi.activities.LoginActivity" />
         </activity>
         <activity
-            android:name="org.bhumi.bhumi.activities.SplashScreenActivity"
+            android:name=".activities.SplashScreenActivity"
             android:label="@string/app_name"
-            android:parentActivityName="org.bhumi.bhumi.activities.LoginActivity"
+            android:parentActivityName=".activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.Home" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="org.bhumi.bhumi.activities.FeedbackActivity"
+            android:name=".activities.FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
+            android:parentActivityName=".activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumi.activities.MainActivity" />
+                android:value="org.bhumi.bhumi.activities.HomeActivity" />
         </activity>
         <activity
-            android:name="org.bhumi.bhumi.activities.AboutRteActivity"
-            android:label="@string/title_activity_about_rte"
-            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
+            android:name=".activities.HomeActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumi.activities.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.Home" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
