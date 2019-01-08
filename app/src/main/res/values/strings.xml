@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bhumi RTE</string>
+    <string name="app_name">Bhumi</string>
 
     <!-- Activity titles -->
     <string name="title_activity_main">Data Collection</string>

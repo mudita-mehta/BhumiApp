@@ -1,4 +1,4 @@
-package org.bhumi.bhumisrte;
+package org.bhumi.bhumi;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("org.bhumi.bhumisrte", appContext.getPackageName());
+        assertEquals("org.bhumi.bhumi", appContext.getPackageName());
     }
 }

@@ -1,10 +1,10 @@
-package org.bhumi.bhumisrte.API;
+package org.bhumi.bhumi.API;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.widget.EditText;
 
-import org.bhumi.bhumisrte.R;
+import org.bhumi.bhumi.R;
 
 import java.net.URLEncoder;
 

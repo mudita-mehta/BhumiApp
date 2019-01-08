@@ -1,10 +1,10 @@
-package org.bhumi.bhumisrte.activities;
+package org.bhumi.bhumi.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import org.bhumi.bhumisrte.R;
+import org.bhumi.bhumi.R;
 
 public class CreditActivity extends AppCompatActivity {
 

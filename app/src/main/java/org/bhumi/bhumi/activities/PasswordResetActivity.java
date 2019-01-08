@@ -1,4 +1,4 @@
-package org.bhumi.bhumisrte.activities;
+package org.bhumi.bhumi.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,9 +18,9 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-import org.bhumi.bhumisrte.R;
-import org.bhumi.bhumisrte.API.Endpoint;
-import org.bhumi.bhumisrte.API.Validator;
+import org.bhumi.bhumi.R;
+import org.bhumi.bhumi.API.Endpoint;
+import org.bhumi.bhumi.API.Validator;
 import org.json.JSONObject;
 
 import okhttp3.Call;

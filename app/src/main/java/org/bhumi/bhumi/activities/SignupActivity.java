@@ -1,4 +1,4 @@
-package org.bhumi.bhumisrte.activities;
+package org.bhumi.bhumi.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,7 +6,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.net.Uri;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,17 +15,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.bhumi.bhumisrte.R;
-import org.bhumi.bhumisrte.API.Endpoint;
-import org.bhumi.bhumisrte.API.User;
-import org.bhumi.bhumisrte.API.Validator;
+import java.io.IOException;
+
+import org.bhumi.bhumi.R;
+import org.bhumi.bhumi.API.Endpoint;
+import org.bhumi.bhumi.API.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,129 +35,131 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /**
- * A login screen that offers login via email/password.
+ * A Signup screen logic
  */
-public class LoginActivity extends AppCompatActivity implements OnClickListener{
+public class SignupActivity extends AppCompatActivity implements  OnClickListener {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
     private static final int REQUEST_READ_CONTACTS = 0;
 
     // UI references.
-    View loginFormView;
     AutoCompleteTextView emailView;
     EditText passwordView;
+    EditText passwordVerifyView;
+    RelativeLayout relativeLayout;
     View progressView;
+    View loginFormView;
+    EditText phoneView;
     Button signUpButton;
-    TextView forgotPasswordButton;
-    Button emailSignInButton;
-    TextView websiteView;
+    EditText pinCodeView;
+    private View focusView;
 
-    // Data variables
+    // Data containers
     private String email;
     private String password;
-    private RelativeLayout relativeLayout;
+    private String passwordVerify;
+    private String phone;
+    private String pinCode;
+    private Boolean cancel;
     private String endpoint;
     private Validator validator;
-    private User user;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
-        //initialize data
+        validator = Validator.getInstance(getApplicationContext());
         endpoint = Endpoint.getInstance(getApplicationContext()).getEndpoint();
 
-        // Instantiate ui references
-        loginFormView = findViewById(R.id.login_form);
+        // Instantiate the views
         emailView = findViewById(R.id.email);
-        signUpButton  = findViewById(R.id.sign_up_button);
         relativeLayout = findViewById(R.id.relativeLayout);
         passwordView = findViewById(R.id.password);
-        progressView = findViewById(R.id.login_progress);
-        forgotPasswordButton = findViewById(R.id.forgot_password_button);
-        emailSignInButton = findViewById(R.id.email_sign_in_button);
+        passwordVerifyView = findViewById(R.id.passwordVerify);
+        progressView = findViewById(R.id.signup_progress);
         loginFormView = findViewById(R.id.login_form);
-        progressView = findViewById(R.id.login_progress);
-        websiteView = findViewById(R.id.websiteTextView);
-        passwordView = findViewById(R.id.password);
-        validator = Validator.getInstance(getApplicationContext());
-        user = User.getCurrentUser(getApplicationContext());
-        signUpButton.setOnClickListener(this);
-        websiteView.setOnClickListener(this);
+        phoneView = findViewById(R.id.phone);
+        pinCodeView = findViewById(R.id.pin);
+        signUpButton = findViewById(R.id.sign_up_button);
 
-        emailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    attemptLogin();
-                }
-                catch (Exception ex){
-                    Toast.makeText(getApplicationContext(), "Unable to signin", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        forgotPasswordButton.setOnClickListener(this);
+
+        // Set up the login form.
+
+        signUpButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.websiteTextView:
-                String url = "http://rte25.bhumi.ngo/";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
-                 break;
-            case R.id.sign_up_button:
-                startActivity(new Intent(getApplicationContext(), SignupActivity.class));
-                break;
-            case R.id.forgot_password_button:
-                startActivity(new Intent(getApplicationContext(), PasswordResetActivity.class));
-                break;
+        try {
+            attemptSignup();
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Something went wrong, please report to us", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() throws IOException, JSONException{
+    private void attemptSignup() throws IOException, JSONException {
 
-
-        // Reset errors.
-        emailView.setError(null);
-        passwordView.setError(null);
-        validator.reset();
-
-        // Store values at the time of the login attempt.
-        email = emailView.getText().toString();
-        password = passwordView.getText().toString();
-
-        validator.validatePassword(password, passwordView);
-        validator.validateEmail(email, emailView);
+        initLogin();
+        extractInputs();
+        validateInputs();
 
         if (validator.isOkay()) {
             showProgress(true);
-            signIn();
+            signUp();
         }
     }
 
-    private void signIn() throws IOException, JSONException {
-        OkHttpClient client = new OkHttpClient();
-        final Context context = getApplicationContext();
+    private void initLogin() {
+        // Reset errors.
+        validator.reset();
+        emailView.setError(null);
+        passwordView.setError(null);
+        passwordVerifyView.setError(null);
+        pinCodeView.setError(null);
+        phoneView.setError(null);
+    }
 
+    private void extractInputs() {
+        // Store values at the time of the login attempt.
+        email = emailView.getText().toString();
+        password = passwordView.getText().toString();
+        passwordVerify = passwordVerifyView.getText().toString();
+        phone = phoneView.getText().toString();
+        pinCode = pinCodeView.getText().toString();
+    }
+
+    private void validateInputs() {
+        // validate all inputs
+        validator.validatePhone(phone, phoneView);
+        validator.validatePin(pinCode, pinCodeView);
+        validator.validateEmail(email, emailView);
+        validator.validatePassword(password, passwordView);
+        validator.validatePassword(passwordVerify, passwordVerifyView);
+        validator.checkPasswordsMatch(password, passwordVerify, passwordVerifyView);
+    }
+
+    private void signUp() throws IOException {
+
+
+        final Context context = getApplicationContext();
+        // Construct the post request
+        OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+
         RequestBody body = RequestBody.create(mediaType, "email="+validator.encode(email)+
-                "&password="+validator.encode(password));
+                "&password="+validator.encode(password)+
+                "&pin="+validator.encode(pinCode)+
+                "&phone="+validator.encode(phone));
+
         Request request = new Request.Builder()
-                .url(endpoint+"/signin/")
+                .url(endpoint+"/signup/")
                 .post(body)
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .addHeader("cache-control", "no-cache")
@@ -172,7 +171,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context, "Failed to signin!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Something went wrong, please report this", Toast.LENGTH_SHORT).show();
                         showProgress(false);
                     }
                 });
@@ -181,26 +180,24 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener{
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 ResponseBody responseBody = response.body();
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(responseBody.string());
                     final String msg = jsonObject.getString("msg");
+
                     if (jsonObject.getBoolean("success")) {
-                        // Successfully logged in
-                        String token = jsonObject.getString("token");
-                        user.login(email, token);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(context, MainActivity.class);
+                                Intent intent = new Intent(context, LoginActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                             }
                         });
-                    }
-                    else {
+                    }else {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -210,7 +207,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener{
                         });
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(context, "Something went wrong, please report to us", Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(context, "Something went wrong, please report to us!", Toast.LENGTH_LONG).show();
+                            showProgress(false);
+                        }
+                    });
                 }
             }
         });
@@ -251,5 +254,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener{
             loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+
+
 }
+
+
+
 

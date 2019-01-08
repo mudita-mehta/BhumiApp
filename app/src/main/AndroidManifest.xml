@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.bhumi.bhumisrte">
+    package="org.bhumi.bhumi">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -17,40 +17,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="org.bhumi.bhumi.activities.LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SignupActivity"
+            android:name="org.bhumi.bhumi.activities.SignupActivity"
             android:label="Signup"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="org.bhumi.bhumi.activities.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.CreditActivity"
+            android:name="org.bhumi.bhumi.activities.CreditActivity"
             android:label="Credits"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumisrte.activities.MainActivity" />
+                android:value="org.bhumi.bhumi.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.PasswordResetActivity"
+            android:name="org.bhumi.bhumi.activities.PasswordResetActivity"
             android:label="Reset Password"
-            android:parentActivityName=".activities.LoginActivity">
+            android:parentActivityName="org.bhumi.bhumi.activities.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumisrte.activities.LoginActivity" />
+                android:value="org.bhumi.bhumi.activities.LoginActivity" />
         </activity>
         <activity
-            android:name=".activities.SplashScreenActivity"
+            android:name="org.bhumi.bhumi.activities.SplashScreenActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.LoginActivity"
+            android:parentActivityName="org.bhumi.bhumi.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,22 +59,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.FeedbackActivity"
+            android:name="org.bhumi.bhumi.activities.FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumisrte.activities.MainActivity" />
+                android:value="org.bhumi.bhumi.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.AboutRteActivity"
+            android:name="org.bhumi.bhumi.activities.AboutRteActivity"
             android:label="@string/title_activity_about_rte"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="org.bhumi.bhumi.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bhumi.bhumisrte.activities.MainActivity" />
+                android:value="org.bhumi.bhumi.activities.MainActivity" />
         </activity>
     </application>
 

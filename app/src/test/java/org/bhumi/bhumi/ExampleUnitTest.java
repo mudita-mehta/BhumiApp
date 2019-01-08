@@ -1,4 +1,4 @@
-package org.bhumi.bhumisrte;
+package org.bhumi.bhumi;
 
 import org.junit.Test;
 

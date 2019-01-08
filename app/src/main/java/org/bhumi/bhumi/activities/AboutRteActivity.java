@@ -1,4 +1,4 @@
-package org.bhumi.bhumisrte.activities;
+package org.bhumi.bhumi.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.bhumi.bhumisrte.R;
+import org.bhumi.bhumi.R;
 
 public class AboutRteActivity extends AppCompatActivity implements View.OnClickListener {
 
