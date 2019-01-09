@@ -3,37 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Home" />
         <item
             android:id="@+id/nav_about_bhumi"
+            android:icon="@drawable/ic_about_us_black_24dp"
             android:title="About Us" />
         <item
             android:id="@+id/nav_register_with_bhumi"
+            android:icon="@drawable/ic_register_black_24dp"
             android:title="Register with Us" />
+
         <item
             android:id="@+id/nav_upcoming_orientations"
+            android:icon="@drawable/ic_orientations_24dp"
             android:title="Upcoming Orientations" />
 
         <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_feedback_black_24dp"
+            android:title="Give Feedback" />
+
+        <item
             android:id="@+id/nav_credits"
+            android:icon="@drawable/ic_credits_24dp"
             android:title="Credits" />
+
+        <item android:title="Communicate">
+            <menu>
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="Refer Friends" />
+                <item
+                    android:id="@+id/nav_follow"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Follow us" />
+            </menu>
+        </item>
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Refer Friends" />
-            <item
-                android:id="@+id/nav_follow"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Follow us" />
-        </menu>
-    </item>
+
 
 </menu>
