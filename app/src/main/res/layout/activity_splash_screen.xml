@@ -8,9 +8,9 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:id="@+id/bhumi_logo"
-        android:src="@drawable/bhumi_logo"
+        android:src="@drawable/bhumi_with_quote_logo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"

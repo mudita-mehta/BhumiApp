@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity
     private User user;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +121,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
         }
 
-       
+
 
         fragmentTransaction.replace(R.id.frame_container, fragment);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
