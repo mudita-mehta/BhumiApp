@@ -46,6 +46,68 @@
             />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="Or Share with"
+            android:id="@+id/temp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/share_submit_button"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/temp"
+            android:id="@+id/share_icons"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            >
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_whatsapp_share"
+                android:id="@+id/whatsapp"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_facebook_messenger_share"
+                android:id="@+id/messenger"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_facebook_share"
+                android:id="@+id/facebook"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/twitter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_twitter_share"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:id="@+id/others"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_share"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
