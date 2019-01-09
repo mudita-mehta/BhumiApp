@@ -4,12 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.fragments.OrientationFragment.OnListFragmentInteractionListener;
 import org.bhumi.bhumi.models.Orientation;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -33,8 +36,20 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.orientation = orientations.get(position);
-        holder.mIdView.setText(orientations.get(position).getId()+"");
-        holder.mContentView.setText(orientations.get(position).getCity());
+        DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        long epochTime = holder.orientation.getDate();
+        holder.cityView.setText(holder.orientation.getCity());
+        holder.contactView.setText(holder.orientation.getContact());
+        holder.dateView.setText(date.format(epochTime));
+        holder.timeView.setText(time.format(epochTime));
+
+        holder.registerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onRegisterFragmentInteraction(holder.orientation);
+            }
+        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,20 +70,22 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView cityView;
+        public final TextView timeView;
+        public final TextView dateView;
+        public final TextView contactView;
+        public final Button registerView;
         public Orientation orientation;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            cityView = view.findViewById(R.id.city);
+            timeView = view.findViewById(R.id.time);
+            dateView = view.findViewById(R.id.date);
+            contactView = view.findViewById(R.id.contact);
+            registerView = view.findViewById(R.id.register);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

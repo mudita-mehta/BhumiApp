@@ -1,6 +1,8 @@
 package org.bhumi.bhumi.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,17 +19,7 @@ import org.bhumi.bhumi.models.Event;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
-public class EventFragment extends Fragment {
-
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+public class EventFragment extends Fragment{
 
     private OnListFragmentInteractionListener mListener;
 
@@ -38,9 +30,8 @@ public class EventFragment extends Fragment {
     public EventFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static EventFragment newInstance(int columnCount) {
+
+    public static EventFragment newInstance() {
         EventFragment fragment = new EventFragment();
         return fragment;
     }
@@ -61,24 +52,24 @@ public class EventFragment extends Fragment {
 
         ArrayList<Event> events = new ArrayList<Event>();
         events.add(new Event(1,"Running", "Run for cause", "Bangalore",
-                date.getTime()+1000, "7848948784","google.com"));
+                date.getTime()+1000, "7848948784","https://google.com"));
         events.add(new Event(2,"Running", "Run for cause", "Bangalore",
-                date.getTime()+2000, "7848948784","google.com"));
+                date.getTime()+2000, "7848948784","https://google.com"));
         events.add(new Event(3,"Running", "Run for cause", "Bangalore",
-                date.getTime()+3000, "7848948784","google.com"));
+                date.getTime()+3000, "7848948784","https://google.com"));
         events.add(new Event(4,"Running", "Run for cause", "Bangalore",
-                date.getTime()+4000, "7848948784","google.com"));
+                date.getTime()+4000, "7848948784","https://google.com"));
         events.add(new Event(5,"Running", "Run for cause", "Bangalore",
-                date.getTime()+5000, "7848948784","google.com"));
+                date.getTime()+5000, "7848948784","https://google.com"));
         events.add(new Event(6,"Running", "Run for cause", "Bangalore",
-                date.getTime()+6000, "7848948784","google.com"));
+                date.getTime()+6000, "7848948784","https://bhumi.ngo"));
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(events, mListener));
+            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(events, mListener,getContext()));
         }
         return view;
     }
@@ -87,7 +78,9 @@ public class EventFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        }
     }
 
     @Override
@@ -97,7 +90,9 @@ public class EventFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Event event);
+        void onRegisterFragmentClickListener(Event event);
     }
 }
+
+

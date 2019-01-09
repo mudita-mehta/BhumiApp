@@ -79,5 +79,6 @@ public class OrientationFragment extends Fragment {
 
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Orientation orientation);
+        void onRegisterFragmentInteraction(Orientation orientation);
     }
 }

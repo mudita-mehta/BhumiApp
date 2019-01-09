@@ -1,25 +1,35 @@
 package org.bhumi.bhumi.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.bhumi.bhumi.R;
-import org.bhumi.bhumi.fragments.EventFragment.OnListFragmentInteractionListener;
+
+import org.bhumi.bhumi.fragments.EventFragment;
+import org.bhumi.bhumi.fragments.OrientationFragment;
 import org.bhumi.bhumi.models.Event;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecyclerViewAdapter.ViewHolder> {
 
     private final List<Event> events;
-    private final OnListFragmentInteractionListener listener;
+    private final EventFragment.OnListFragmentInteractionListener listener;
+    private final Context context;
 
-    public MyEventRecyclerViewAdapter(List<Event> mEvents, OnListFragmentInteractionListener mListener) {
+    public MyEventRecyclerViewAdapter(List<Event> mEvents, EventFragment.OnListFragmentInteractionListener mListener, Context mContext) {
         events = mEvents;
         listener = mListener;
+        context = mContext;
     }
 
     @Override
@@ -32,8 +42,23 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.event = events.get(position);
-        holder.mIdView.setText(events.get(position).getId()+"");
-        holder.mContentView.setText(events.get(position).getText());
+        long epochTime = holder.event.getDate();
+        DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        holder.titleView.setText(holder.event.getTitle());
+        holder.contentView.setText(holder.event.getText());
+        holder.cityView.setText(holder.event.getCity());
+        holder.contactView.setText(holder.event.getContact());
+        holder.dateView.setText(date.format(epochTime));
+        holder.timeView.setText(time.format(epochTime));
+
+        holder.registerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRegisterFragmentClickListener(holder.event);
+            }
+        });
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,20 +79,29 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView titleView;
+        public final TextView contentView;
+        public final TextView dateView;
+        public final TextView cityView;
+        public final TextView contactView;
+        public final Button registerView;
+        public final TextView timeView;
         public Event event;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            titleView = view.findViewById(R.id.title);
+            contentView = view.findViewById(R.id.content);
+            dateView = view.findViewById(R.id.date);
+            cityView = view.findViewById(R.id.city);
+            contactView = view.findViewById(R.id.contact);
+            timeView = view.findViewById(R.id.time);
+            registerView = view.findViewById(R.id.register);
+
+
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
+
     }
 }
