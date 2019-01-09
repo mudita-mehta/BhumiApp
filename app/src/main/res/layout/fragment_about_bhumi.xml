@@ -5,10 +5,64 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AboutBhumiFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/bhumi_logo_container"
+            android:layout_margin="8dp"
+            android:src="@drawable/bhumi_with_quote_logo"
+            android:contentDescription="Bhumi NGO logo"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/first_paragraph"
+            android:layout_below="@id/bhumi_logo_container"
+            android:layout_margin="4dp"
+            android:text="Bhumi is one of India's largest independent and youth volunteer non-profit organisations"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_margin="4dp"
+            android:id="@+id/second_paragraph"
+            android:layout_below="@id/first_paragraph"
+            android:text="Bhumi was founded on August 15, 2006 by a small group of friends with a strong passion to change society today and build a better India for tomorrow. The organisation provies youngsters a platform to serve the society and bridges the gap between the educated and the uneducated"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/third_paragraph"
+            android:layout_margin="4dp"
+            android:layout_below="@id/second_paragraph"
+            android:text="Our volunteers educate and mentor children from orphanages, slum and village community centres across the country to give them a better future, which will benefit them as well as our country. The learning experience is mutual -- our volunteers gain perspective and the experience to mould themselves into tomorrow's leaders."
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_margin="4dp"
+            android:layout_below="@id/third_paragraph"
+            android:id="@+id/fourth_paragraph"
+            android:text="Know more @ www.bhumi.ngo"
+            />
+
+
+        <include layout="@layout/copyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
 </FrameLayout>

@@ -5,10 +5,51 @@
     android:layout_height="match_parent"
     tools:context=".fragments.CreditsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/bhumi_logo"
+            android:layout_margin="16dp"
+            android:src="@drawable/bhumi_logo"
+            android:contentDescription="Bhumi Logo"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Tech4Change Volunteers"
+            android:id="@+id/tech4change"
+            android:layout_below="@id/bhumi_logo"
+            android:textAlignment="center"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/temp"
+            android:textStyle="bold"
+            android:layout_below="@id/tech4change"
+            android:layout_marginTop="16dp"
+            android:text="Developed By"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/developer_name"
+            android:layout_below="@id/temp"
+            android:textAlignment="center"
+            android:text="Deepak Chethan, Volunteer"/>
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>

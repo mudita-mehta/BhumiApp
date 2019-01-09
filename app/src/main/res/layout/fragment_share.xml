@@ -3,12 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".fragments.ShareFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/share_form"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details"
+            android:textAlignment="center"
+            android:text="Please enter the email address of the person you want to refer"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_marginTop="@dimen/default_margin"
+            />
+
+        <EditText
+            android:layout_below="@id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:textAlignment="center"
+            android:id="@+id/share_edittext"
+            android:layout_marginTop="@dimen/default_margin"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            style="@style/buttonStyle"
+            android:background="@drawable/rounded_orange_button"
+            android:text="@string/button_submit"
+            android:layout_marginTop="@dimen/default_margin"
+            android:id="@+id/share_submit_button"
+            android:layout_below="@id/share_edittext"
+            />
+
+
+
+    </RelativeLayout>
 
 </FrameLayout>
