@@ -51,6 +51,9 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
     EditText phoneView;
     Button signUpButton;
     EditText pinCodeView;
+    EditText cityView;
+    EditText bloodGroupView;
+    EditText nameView;
     private View focusView;
 
     // Data containers
@@ -58,11 +61,11 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
     private String password;
     private String passwordVerify;
     private String phone;
-    private String pinCode;
-    private Boolean cancel;
     private String endpoint;
     private Validator validator;
-
+    private String city;
+    private String bloodGroup;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +83,10 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
         progressView = findViewById(R.id.signup_progress);
         loginFormView = findViewById(R.id.login_form);
         phoneView = findViewById(R.id.phone);
-        pinCodeView = findViewById(R.id.pin);
         signUpButton = findViewById(R.id.sign_up_button);
-
+        nameView = findViewById(R.id.name);
+        cityView = findViewById(R.id.city);
+        bloodGroupView = findViewById(R.id.bloodGroup);
 
         // Set up the login form.
 
@@ -132,13 +136,17 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
         password = passwordView.getText().toString();
         passwordVerify = passwordVerifyView.getText().toString();
         phone = phoneView.getText().toString();
-        pinCode = pinCodeView.getText().toString();
+        name = nameView.getText().toString();
+        city = cityView.getText().toString();
+        bloodGroup = bloodGroupView.getText().toString();
     }
 
     private void validateInputs() {
         // validate all inputs
         validator.validatePhone(phone, phoneView);
-        validator.validatePin(pinCode, pinCodeView);
+        validator.validateText(city, cityView);
+        validator.validateText(bloodGroup, bloodGroupView);
+        validator.validateText(name, nameView);
         validator.validateEmail(email, emailView);
         validator.validatePassword(password, passwordView);
         validator.validatePassword(passwordVerify, passwordVerifyView);
@@ -155,7 +163,9 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
 
         RequestBody body = RequestBody.create(mediaType, "email="+validator.encode(email)+
                 "&password="+validator.encode(password)+
-                "&pin="+validator.encode(pinCode)+
+                "&city="+validator.encode(city)+
+                "&name="+validator.encode(name)+
+                "&bloodGroup="+validator.encode(bloodGroup)+
                 "&phone="+validator.encode(phone));
 
         Request request = new Request.Builder()

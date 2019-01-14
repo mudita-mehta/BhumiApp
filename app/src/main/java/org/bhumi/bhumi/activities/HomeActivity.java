@@ -21,6 +21,7 @@ import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.fragments.AboutBhumiFragment;
 import org.bhumi.bhumi.fragments.CreditsFragment;
 import org.bhumi.bhumi.fragments.EventFragment;
+import org.bhumi.bhumi.fragments.FeedbackFragment;
 import org.bhumi.bhumi.fragments.FollowFragment;
 import org.bhumi.bhumi.fragments.OrientationFragment;
 import org.bhumi.bhumi.fragments.ShareFragment;
@@ -82,55 +83,47 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         Fragment fragment = fragmentManager.findFragmentById(R.id.frame_container);
-        boolean flag = false;
         switch (item.getItemId()) {
             case R.id.nav_home:
                 if (!(fragment instanceof EventFragment)) {
-                    flag = true;
                     fragment = new EventFragment();
                 }
                 break;
             case R.id.nav_upcoming_orientations:
                 if (!(fragment instanceof OrientationFragment)) {
-                    flag = true;
                     fragment = new OrientationFragment();
                 }
 
                 break;
             case R.id.nav_about_bhumi:
                 if (!(fragment instanceof AboutBhumiFragment)) {
-                    flag = true;
                     fragment = new AboutBhumiFragment();
                 }
                 break;
             case R.id.nav_credits:
                 if (!(fragment instanceof CreditsFragment)) {
-                    flag = true;
                     fragment = new CreditsFragment();
                 }
                 break;
             case R.id.nav_share:
                 if (!(fragment instanceof ShareFragment)) {
-                    flag = true;
                     fragment = new ShareFragment();
                 }
                 break;
             case R.id.nav_follow:
                 if (!(fragment instanceof FollowFragment)) {
-                    flag = true;
                     fragment = new FollowFragment();
                 }
                 break;
             case R.id.nav_feedback:
-                startActivity(new Intent(getApplicationContext(), FeedbackActivity.class));
-                break;
-            case R.id.nav_register_with_bhumi:
-                startActivity(new Intent(getApplicationContext(), BhumiRegisterActivity.class));
-                break;
+                if (!(fragment instanceof FeedbackFragment)) {
+                    fragment = new FeedbackFragment();
+                }
+
         }
 
 
-        if (flag) fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -13,11 +13,6 @@
             android:icon="@drawable/ic_about_us_black_24dp"
             android:title="About Us" />
         <item
-            android:id="@+id/nav_register_with_bhumi"
-            android:icon="@drawable/ic_register_black_24dp"
-            android:title="Register with Us" />
-
-        <item
             android:id="@+id/nav_upcoming_orientations"
             android:icon="@drawable/ic_orientations_24dp"
             android:title="Upcoming Orientations" />

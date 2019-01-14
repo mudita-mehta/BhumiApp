@@ -1,4 +1,5 @@
-package org.bhumi.bhumi.activities;
+package org.bhumi.bhumi.fragments;
+
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,9 +7,10 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,6 +22,7 @@ import org.bhumi.bhumi.api.User;
 import org.bhumi.bhumi.api.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -28,7 +31,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class FeedbackActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FeedbackFragment extends Fragment implements View.OnClickListener {
 
     EditText feedbackTextView;
     Button buttonView;
@@ -38,26 +44,28 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     String endpoint;
     User user;
     Validator validator;
+    public FeedbackFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        feedbackTextView = findViewById(R.id.feedback_edittext);
-        buttonView = findViewById(R.id.feedback_submit_button);
-        progressView = findViewById(R.id.progress);
-        feedbackFormView = findViewById(R.id.feedback_form);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_feedback, container, false);
+        feedbackTextView = view.findViewById(R.id.feedback_edittext);
+        buttonView = view.findViewById(R.id.feedback_submit_button);
+        progressView = view.findViewById(R.id.progress);
+        feedbackFormView = view.findViewById(R.id.feedback_form);
 
 
-        endpoint = Endpoint.getInstance(getApplicationContext()).getEndpoint();
-        user = User.getCurrentUser(getApplicationContext());
-        validator = Validator.getInstance(getApplicationContext());
+        endpoint = Endpoint.getInstance(getContext()).getEndpoint();
+        user = User.getCurrentUser(getContext());
+        validator = Validator.getInstance(getContext());
 
         buttonView.setOnClickListener(this);
-
+        return view;
     }
 
     @Override
@@ -68,7 +76,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         if (validator.isOkay()) {
             showProgress(true);
             String email = user.getEmail();
-            final Context context = getApplicationContext();
+            final Context context = getContext();
             try {
                 OkHttpClient client = new OkHttpClient();
                 String mEmail = validator.encode(email);
@@ -82,7 +90,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        runOnUiThread(new Runnable() {
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Toast.makeText(context, "Unable to send feedback, try again!", Toast.LENGTH_LONG).show();
@@ -97,7 +105,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                             JSONObject jsonObject = new JSONObject(response.body().string());
                             final String msg = jsonObject.getString("msg");
                             if (jsonObject.getBoolean("success")) {
-                                runOnUiThread(new Runnable() {
+                                getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
@@ -106,7 +114,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                                     }
                                 });
                             } else {
-                                runOnUiThread(new Runnable() {
+                                getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
@@ -128,9 +136,10 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
             }
         }
         else {
-            Toast.makeText(getApplicationContext(), "Please fix the errors and try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Please fix the errors and try again", Toast.LENGTH_LONG).show();
         }
-}
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -166,4 +175,5 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
             feedbackFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+
 }
