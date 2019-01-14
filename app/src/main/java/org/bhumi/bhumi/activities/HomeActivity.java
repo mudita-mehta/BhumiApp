@@ -24,6 +24,7 @@ import org.bhumi.bhumi.fragments.EventFragment;
 import org.bhumi.bhumi.fragments.FeedbackFragment;
 import org.bhumi.bhumi.fragments.FollowFragment;
 import org.bhumi.bhumi.fragments.OrientationFragment;
+import org.bhumi.bhumi.fragments.RegisterFragment;
 import org.bhumi.bhumi.fragments.ShareFragment;
 import org.bhumi.bhumi.models.Event;
 import org.bhumi.bhumi.models.Orientation;
@@ -118,6 +119,10 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_feedback:
                 if (!(fragment instanceof FeedbackFragment)) {
                     fragment = new FeedbackFragment();
+                }
+            case R.id.nav_register:
+                if (!(fragment instanceof RegisterFragment)) {
+                    fragment = new RegisterFragment();
                 }
 
         }

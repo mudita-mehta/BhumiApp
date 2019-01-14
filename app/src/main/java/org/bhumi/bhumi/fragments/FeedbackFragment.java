@@ -31,9 +31,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class FeedbackFragment extends Fragment implements View.OnClickListener {
 
     EditText feedbackTextView;
