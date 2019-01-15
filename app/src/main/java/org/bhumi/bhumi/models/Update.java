@@ -5,38 +5,59 @@ import java.util.Date;
 public class Update {
 
     int id;
-    String title;
-    Date time;
-    String info;
+    String city;
+    long date;
+    String contact;
+    String register_url;
 
-    public Update(int id, String title, Date time, String info) {
+    public Update(int id, String city, long date, String contact, String register_url) {
         this.id = id;
-        this.title = title;
-        this.time = time;
-        this.info = info;
+        this.city = city;
+        this.date = date;
+        this.contact = contact;
+        this.register_url = register_url;
     }
 
-    public String getTitle() {
-        return title;
+    public int getId() {
+        return id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getTime() {
-        return time;
+    public String getCity() {
+        return city;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getInfo() {
-        return info;
+    public long getDate() {
+        return date;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getRegister_url() {
+        return register_url;
+    }
+
+    public interface OnListFragmentInteractionListener {
+        void onListFragmentInteraction(Update update);
+        void onRegisterFragmentInteraction(Update update);
+        void onContactButtonClickedFragmentInteraction(Update update);
+        void onShareButtonClickedFragmentInteracton(Update update);
     }
 }

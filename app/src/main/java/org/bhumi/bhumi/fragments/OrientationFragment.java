@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.adapters.MyOrientationRecyclerViewAdapter;
 import org.bhumi.bhumi.models.Orientation;
+import org.bhumi.bhumi.models.Update;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,12 +21,8 @@ import java.util.Date;
 public class OrientationFragment extends Fragment {
 
 
-    private OnListFragmentInteractionListener mListener;
+    public Update.OnListFragmentInteractionListener mListener;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public OrientationFragment() {
     }
 
@@ -42,15 +39,15 @@ public class OrientationFragment extends Fragment {
 
         ArrayList<Orientation> orientations = new ArrayList<>();
         Date date = new Date();
-        orientations.add(new Orientation(1,"Bangalore",date.getDate()+1000,
+        orientations.add(new Orientation(1,"","Bangalore",date.getDate()+1000,
                 "9900858710","google.com"));
-        orientations.add(new Orientation(2,"Bangalore",date.getDate()+2000,
+        orientations.add(new Orientation(2,"","Bangalore",date.getDate()+2000,
                 "9900858710","google.com"));
-        orientations.add(new Orientation(3,"Bangalore",date.getDate()+3000,
+        orientations.add(new Orientation(3,"","Bangalore",date.getDate()+3000,
                 "9900858710","google.com"));
-        orientations.add(new Orientation(4,"Bangalore",date.getDate()+4000,
+        orientations.add(new Orientation(4,"","Bangalore",date.getDate()+4000,
                 "9900858710","google.com"));
-        orientations.add(new Orientation(5,"Bangalore",date.getDate()+5000,
+        orientations.add(new Orientation(5,"","Bangalore",date.getDate()+5000,
                 "9900858710","google.com"));
 
         // Set the adapter
@@ -67,8 +64,8 @@ public class OrientationFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OrientationFragment.OnListFragmentInteractionListener) {
-            mListener = (OrientationFragment.OnListFragmentInteractionListener) context;
+        if (context instanceof Update.OnListFragmentInteractionListener) {
+            mListener = (Update.OnListFragmentInteractionListener) context;
         }
     }
 
@@ -79,9 +76,5 @@ public class OrientationFragment extends Fragment {
     }
 
 
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Orientation orientation);
-        void onRegisterFragmentInteraction(Orientation orientation);
-        void onContactButtonClickedFragmentInteraction(Orientation orientation);
-    }
+
 }

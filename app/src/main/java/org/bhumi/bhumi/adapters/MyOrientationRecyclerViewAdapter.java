@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.bhumi.bhumi.R;
-import org.bhumi.bhumi.fragments.OrientationFragment.OnListFragmentInteractionListener;
 import org.bhumi.bhumi.models.Orientation;
+import org.bhumi.bhumi.models.Update;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,9 +19,9 @@ import java.util.List;
 public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOrientationRecyclerViewAdapter.ViewHolder> {
 
     private final List<Orientation> orientations;
-    private final OnListFragmentInteractionListener mListener;
+    private final Update.OnListFragmentInteractionListener mListener;
 
-    public MyOrientationRecyclerViewAdapter(List<Orientation> mOrientations, OnListFragmentInteractionListener listener) {
+    public MyOrientationRecyclerViewAdapter(List<Orientation> mOrientations, Update.OnListFragmentInteractionListener listener) {
         orientations = mOrientations;
         mListener = listener;
     }
@@ -54,6 +54,12 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
             @Override
             public void onClick(View v) {
                 mListener.onContactButtonClickedFragmentInteraction(holder.orientation);
+            }
+        });
+        holder.shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onShareButtonClickedFragmentInteracton(holder.orientation);
             }
         });
         holder.mView.setOnClickListener(new View.OnClickListener() {

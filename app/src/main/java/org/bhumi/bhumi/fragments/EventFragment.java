@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.adapters.MyEventRecyclerViewAdapter;
 import org.bhumi.bhumi.models.Event;
+import org.bhumi.bhumi.models.Update;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class EventFragment extends Fragment{
 
-    private OnListFragmentInteractionListener mListener;
+    private Update.OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -96,8 +97,8 @@ public class EventFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof Update.OnListFragmentInteractionListener) {
+            mListener = (Update.OnListFragmentInteractionListener) context;
         }
     }
 
@@ -107,11 +108,7 @@ public class EventFragment extends Fragment{
         mListener = null;
     }
 
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Event event);
-        void onRegisterFragmentClickListener(Event event);
-        void onContactFragmentClickListener(Event event);
-    }
+
 }
 
 

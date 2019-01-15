@@ -28,11 +28,11 @@ import org.bhumi.bhumi.fragments.RegisterFragment;
 import org.bhumi.bhumi.fragments.ShareFragment;
 import org.bhumi.bhumi.models.Event;
 import org.bhumi.bhumi.models.Orientation;
+import org.bhumi.bhumi.models.Update;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        EventFragment.OnListFragmentInteractionListener,
-        OrientationFragment.OnListFragmentInteractionListener {
+        Update.OnListFragmentInteractionListener {
 
     private User user;
     private FragmentManager fragmentManager;
@@ -126,51 +126,39 @@ public class HomeActivity extends AppCompatActivity
                 }
 
         }
-
-
         fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+
     @Override
-    public void onListFragmentInteraction(Event event) {
-        // TODO Future enhancements
+    public void onListFragmentInteraction(Update update) {
+        // Future enhacement
     }
 
     @Override
-    public void onRegisterFragmentClickListener(Event event) {
-            Uri register_link = Uri.parse(event.getRegister_url());
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(register_link);
-            startActivity(i);
-    }
-
-    @Override
-    public void onContactFragmentClickListener(Event event) {
-        Intent i = new Intent(Intent.ACTION_DIAL);
-        i.setData(Uri.parse("tel:"+event.getContact()));
-        startActivity(i);
-    }
-
-    @Override
-    public void onListFragmentInteraction(Orientation orientation) {
-        // TODO future enhancements
-    }
-
-    @Override
-    public void onRegisterFragmentInteraction(Orientation orientation) {
-        Uri register_link = Uri.parse(orientation.getRegister_url());
+    public void onRegisterFragmentInteraction(Update update) {
+        Uri register_link = Uri.parse(update.getRegister_url());
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(register_link);
         startActivity(i);
     }
 
     @Override
-    public void onContactButtonClickedFragmentInteraction(Orientation orientation) {
+    public void onContactButtonClickedFragmentInteraction(Update update) {
         Intent i = new Intent(Intent.ACTION_DIAL);
-        i.setData(Uri.parse("tel:"+orientation.getContact()));
+        i.setData(Uri.parse("tel:"+update.getContact()));
         startActivity(i);
+    }
+
+    @Override
+    public void onShareButtonClickedFragmentInteracton(Update update) {
+        String message = "Check out this cool event by Bhumi NGO by visiting "+update.getRegister_url();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 }

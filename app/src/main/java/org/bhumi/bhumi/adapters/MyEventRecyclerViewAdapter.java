@@ -18,6 +18,7 @@ import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.fragments.EventFragment;
 import org.bhumi.bhumi.fragments.OrientationFragment;
 import org.bhumi.bhumi.models.Event;
+import org.bhumi.bhumi.models.Update;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,10 +27,10 @@ import java.util.List;
 public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecyclerViewAdapter.ViewHolder> {
 
     private final List<Event> events;
-    private final EventFragment.OnListFragmentInteractionListener listener;
+    private final Update.OnListFragmentInteractionListener listener;
     private final Context context;
 
-    public MyEventRecyclerViewAdapter(List<Event> mEvents, EventFragment.OnListFragmentInteractionListener mListener, Context mContext) {
+    public MyEventRecyclerViewAdapter(List<Event> mEvents, Update.OnListFragmentInteractionListener mListener, Context mContext) {
         events = mEvents;
         listener = mListener;
         context = mContext;
@@ -49,7 +50,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat time = new SimpleDateFormat("HH:mm");
         holder.titleView.setText(holder.event.getTitle());
-        holder.contentView.setText(holder.event.getText());
+        holder.contentView.setText(holder.event.getContent());
         holder.cityView.setText(holder.event.getCity());
 
         holder.dateView.setText(date.format(epochTime));
@@ -59,7 +60,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         holder.registerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onRegisterFragmentClickListener(holder.event);
+                listener.onRegisterFragmentInteraction(holder.event);
             }
         });
 
@@ -75,10 +76,16 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
             }
         });
 
+        holder.shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onShareButtonClickedFragmentInteracton(holder.event);
+            }
+        });
         holder.contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onContactFragmentClickListener(holder.event);
+                listener.onContactButtonClickedFragmentInteraction(holder.event);
             }
         });
     }
@@ -98,6 +105,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         public final Button registerView;
         public final TextView timeView;
         public final ImageView imageView;
+        public final Button shareButton;
         public Event event;
 
         public ViewHolder(View view) {
@@ -111,10 +119,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
             timeView = view.findViewById(R.id.time);
             registerView = view.findViewById(R.id.register);
             imageView = view.findViewById(R.id.eventImageView);
-
-
+            shareButton = view.findViewById(R.id.share);
         }
-
-
     }
 }
