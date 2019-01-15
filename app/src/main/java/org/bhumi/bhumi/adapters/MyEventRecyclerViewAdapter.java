@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.bhumi.bhumi.R;
 
@@ -48,9 +51,10 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         holder.titleView.setText(holder.event.getTitle());
         holder.contentView.setText(holder.event.getText());
         holder.cityView.setText(holder.event.getCity());
-        holder.contactView.setText(holder.event.getContact());
+
         holder.dateView.setText(date.format(epochTime));
         holder.timeView.setText(time.format(epochTime));
+        Glide.with(this.context).load(holder.event.getImageUrl()).into(holder.imageView);
 
         holder.registerView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +74,13 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
                 }
             }
         });
+
+        holder.contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onContactFragmentClickListener(holder.event);
+            }
+        });
     }
 
     @Override
@@ -83,9 +94,10 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         public final TextView contentView;
         public final TextView dateView;
         public final TextView cityView;
-        public final TextView contactView;
+        public final Button contactButton;
         public final Button registerView;
         public final TextView timeView;
+        public final ImageView imageView;
         public Event event;
 
         public ViewHolder(View view) {
@@ -95,9 +107,10 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
             contentView = view.findViewById(R.id.content);
             dateView = view.findViewById(R.id.date);
             cityView = view.findViewById(R.id.city);
-            contactView = view.findViewById(R.id.contact);
+            contactButton = view.findViewById(R.id.contact);
             timeView = view.findViewById(R.id.time);
             registerView = view.findViewById(R.id.register);
+            imageView = view.findViewById(R.id.eventImageView);
 
 
         }

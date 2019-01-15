@@ -148,6 +148,13 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    public void onContactFragmentClickListener(Event event) {
+        Intent i = new Intent(Intent.ACTION_DIAL);
+        i.setData(Uri.parse("tel:"+event.getContact()));
+        startActivity(i);
+    }
+
+    @Override
     public void onListFragmentInteraction(Orientation orientation) {
         // TODO future enhancements
     }
@@ -157,6 +164,13 @@ public class HomeActivity extends AppCompatActivity
         Uri register_link = Uri.parse(orientation.getRegister_url());
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(register_link);
+        startActivity(i);
+    }
+
+    @Override
+    public void onContactButtonClickedFragmentInteraction(Orientation orientation) {
+        Intent i = new Intent(Intent.ACTION_DIAL);
+        i.setData(Uri.parse("tel:"+orientation.getContact()));
         startActivity(i);
     }
 }

@@ -10,6 +10,7 @@ public class Event {
     long date;
     String contact;
     String register_url;
+    String image_url;
 
     public int getId() {
         return id;
@@ -19,7 +20,7 @@ public class Event {
         this.id = id;
     }
 
-    public Event(int id, String title, String text, String city, long date, String contact, String register_url) {
+    public Event(int id, String title, String text, String city, long date, String contact, String register_url, String image_url) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -27,6 +28,7 @@ public class Event {
         this.date = date;
         this.contact = contact;
         this.register_url = register_url;
+        this.image_url = image_url;
     }
 
     public String getTitle() {
@@ -75,5 +77,13 @@ public class Event {
 
     public void setRegister_url(String register_url) {
         this.register_url = register_url;
+    }
+
+    public String getImageUrl() {
+        return image_url;
+    }
+
+    public void setImageUrl(String image_url) {
+        this.image_url = image_url;
     }
 }

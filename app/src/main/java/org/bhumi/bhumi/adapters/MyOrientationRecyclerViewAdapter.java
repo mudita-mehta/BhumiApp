@@ -40,7 +40,7 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
         DateFormat time = new SimpleDateFormat("HH:mm");
         long epochTime = holder.orientation.getDate();
         holder.cityView.setText(holder.orientation.getCity());
-        holder.contactView.setText(holder.orientation.getContact());
+
         holder.dateView.setText(date.format(epochTime));
         holder.timeView.setText(time.format(epochTime));
 
@@ -50,7 +50,12 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
                 mListener.onRegisterFragmentInteraction(holder.orientation);
             }
         });
-
+        holder.contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onContactButtonClickedFragmentInteraction(holder.orientation);
+            }
+        });
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +78,9 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
         public final TextView cityView;
         public final TextView timeView;
         public final TextView dateView;
-        public final TextView contactView;
         public final Button registerView;
+        public final Button shareButton;
+        public final Button contactButton;
         public Orientation orientation;
 
         public ViewHolder(View view) {
@@ -83,7 +89,8 @@ public class MyOrientationRecyclerViewAdapter extends RecyclerView.Adapter<MyOri
             cityView = view.findViewById(R.id.city);
             timeView = view.findViewById(R.id.time);
             dateView = view.findViewById(R.id.date);
-            contactView = view.findViewById(R.id.contact);
+            shareButton = view.findViewById(R.id.share);
+            contactButton = view.findViewById(R.id.contact);
             registerView = view.findViewById(R.id.register);
         }
 

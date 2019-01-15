@@ -51,18 +51,36 @@ public class EventFragment extends Fragment{
         Date date = new Date();
 
         ArrayList<Event> events = new ArrayList<Event>();
-        events.add(new Event(1,"Running", "Run for cause", "Bangalore",
-                date.getTime()+1000, "7848948784","https://google.com"));
-        events.add(new Event(2,"Running", "Run for cause", "Bangalore",
-                date.getTime()+2000, "7848948784","https://google.com"));
-        events.add(new Event(3,"Running", "Run for cause", "Bangalore",
-                date.getTime()+3000, "7848948784","https://google.com"));
-        events.add(new Event(4,"Running", "Run for cause", "Bangalore",
-                date.getTime()+4000, "7848948784","https://google.com"));
-        events.add(new Event(5,"Running", "Run for cause", "Bangalore",
-                date.getTime()+5000, "7848948784","https://google.com"));
-        events.add(new Event(6,"Running", "Run for cause", "Bangalore",
-                date.getTime()+6000, "7848948784","https://bhumi.ngo"));
+        events.add(new Event(1,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+1000, "7848948784","https://google.com",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        events.add(new Event(2,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+2000, "7848948784","https://google.com",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        events.add(new Event(3,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+3000, "7848948784","https://google.com",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        events.add(new Event(4,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+4000, "7848948784","https://google.com",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        events.add(new Event(5,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+5000, "7848948784","https://google.com",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        events.add(new Event(6,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
+                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
+                "support Bhumi in providing education for the under previleged children.", "Bangalore",
+                date.getTime()+6000, "7848948784","https://bhumi.ngo",
+                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -92,6 +110,7 @@ public class EventFragment extends Fragment{
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Event event);
         void onRegisterFragmentClickListener(Event event);
+        void onContactFragmentClickListener(Event event);
     }
 }
 

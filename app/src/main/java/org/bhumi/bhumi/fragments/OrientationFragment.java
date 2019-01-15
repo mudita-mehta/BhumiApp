@@ -67,7 +67,9 @@ public class OrientationFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
+        if (context instanceof OrientationFragment.OnListFragmentInteractionListener) {
+            mListener = (OrientationFragment.OnListFragmentInteractionListener) context;
+        }
     }
 
     @Override
@@ -80,5 +82,6 @@ public class OrientationFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Orientation orientation);
         void onRegisterFragmentInteraction(Orientation orientation);
+        void onContactButtonClickedFragmentInteraction(Orientation orientation);
     }
 }
