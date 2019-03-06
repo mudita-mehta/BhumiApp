@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "384218933740",
+    "firebase_url": "https://bhumiapp-eb280.firebaseio.com",
+    "project_id": "bhumiapp-eb280",
+    "storage_bucket": "bhumiapp-eb280.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384218933740:android:73274d5b93026554",
+        "android_client_info": {
+          "package_name": "org.bhumi.bhumi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384218933740-ie6on2shesuba5lh67jeamgmnng47v62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.bhumi.bhumi",
+            "certificate_hash": "c8e02fa5a6643a2178b67ee48fc668d506dfbfc0"
+          }
+        },
+        {
+          "client_id": "384218933740-ffk45jobgqengfi3qke7n8b5lk5npeid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc1Ypc-MMb2yZFuJMBsmqAY8aZ_RIZf5Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384218933740-ffk45jobgqengfi3qke7n8b5lk5npeid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
