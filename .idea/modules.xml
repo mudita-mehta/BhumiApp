@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Bhumi.iml" filepath="$PROJECT_DIR$/Bhumi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BhumiApp.iml" filepath="$PROJECT_DIR$/BhumiApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
