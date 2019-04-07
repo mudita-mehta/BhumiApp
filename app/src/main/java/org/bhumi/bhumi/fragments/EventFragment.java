@@ -14,21 +14,29 @@ import android.view.ViewGroup;
 
 import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.adapters.MyEventRecyclerViewAdapter;
+import org.bhumi.bhumi.api.ServiceProvider;
 import org.bhumi.bhumi.models.Event;
 import org.bhumi.bhumi.models.Update;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+import retrofit2.Retrofit;
+
 public class EventFragment extends Fragment{
 
     private Update.OnListFragmentInteractionListener mListener;
+    private ArrayList<Event> mEvents = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public EventFragment() {
+
+        //initialise the ArrayList for the mEvents
+        mEvents = new ArrayList<Event>();
+
     }
 
 
@@ -48,49 +56,26 @@ public class EventFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_list, container, false);
 
+
+
         // Dummy content
         Date date = new Date();
 
-        ArrayList<Event> events = new ArrayList<Event>();
-        events.add(new Event(1,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+1000, "7848948784","https://google.com",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
-        events.add(new Event(2,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+2000, "7848948784","https://google.com",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
-        events.add(new Event(3,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+3000, "7848948784","https://google.com",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
-        events.add(new Event(4,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+4000, "7848948784","https://google.com",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
-        events.add(new Event(5,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+5000, "7848948784","https://google.com",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
-        events.add(new Event(6,"Cyclation", "Bhumi launched its first edition of \"Cyclation " +
-                "-Cycling for Education\" this year to present an opportunity for cycling enthusiasts to " +
-                "support Bhumi in providing education for the under previleged children.", "Bangalore",
-                date.getTime()+6000, "7848948784","https://bhumi.ngo",
-                "https://www.bhumi.ngo/wp-content/uploads/2018/02/Cyclation-graphic-main-e1533093975191.png"));
+        populateEvents();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(events, mListener,getContext()));
+            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(mEvents, mListener,getContext()));
         }
+
         return view;
+    }
+
+    private void populateEvents() {
+        mEvents = ServiceProvider.getInstance(getContext()).fetchAllEvents();
     }
 
 

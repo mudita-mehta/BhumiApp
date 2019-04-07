@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
-
     <!-- uncomment the following three meta-data later on -->
 
     <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
