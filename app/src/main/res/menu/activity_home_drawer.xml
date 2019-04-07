@@ -31,6 +31,11 @@
             android:icon="@drawable/ic_credits_24dp"
             android:title="Credits" />
 
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout_black_24dp"
+            android:title="Logout" />
+
         <item android:title="Communicate">
             <menu>
                 <item

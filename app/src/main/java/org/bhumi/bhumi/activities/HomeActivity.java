@@ -120,11 +120,20 @@ public class HomeActivity extends AppCompatActivity
                 if (!(fragment instanceof FeedbackFragment)) {
                     fragment = new FeedbackFragment();
                 }
+                break;
             case R.id.nav_register:
                 if (!(fragment instanceof RegisterFragment)) {
                     fragment = new RegisterFragment();
                 }
-
+                break;
+            case R.id.nav_logout:
+                user.logout();
+                overridePendingTransition(0,0);
+                Intent intent = getIntent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                overridePendingTransition(0,0);
+                startActivity(intent);
         }
         fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
