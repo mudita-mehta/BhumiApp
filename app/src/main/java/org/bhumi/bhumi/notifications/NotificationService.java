@@ -42,7 +42,6 @@ public  class NotificationService extends FirebaseMessagingService {
                 // Handle message within 10 seconds
                 Log.d(TAG, "received the notification, " + " handling with a short running job");
             }
-
         }
 
         // Check if message contains a notification payload.
