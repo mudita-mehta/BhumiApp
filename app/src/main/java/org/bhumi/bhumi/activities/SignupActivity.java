@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
@@ -50,7 +51,6 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
     View loginFormView;
     EditText phoneView;
     Button signUpButton;
-    EditText pinCodeView;
     EditText cityView;
     EditText bloodGroupView;
     EditText nameView;
@@ -126,7 +126,6 @@ public class SignupActivity extends AppCompatActivity implements  OnClickListene
         emailView.setError(null);
         passwordView.setError(null);
         passwordVerifyView.setError(null);
-        pinCodeView.setError(null);
         phoneView.setError(null);
     }
 
