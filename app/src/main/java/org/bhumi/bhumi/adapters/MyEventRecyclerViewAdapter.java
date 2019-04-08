@@ -18,19 +18,21 @@ import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.fragments.EventFragment;
 import org.bhumi.bhumi.fragments.OrientationFragment;
 import org.bhumi.bhumi.models.Event;
+import org.bhumi.bhumi.models.Meetup;
 import org.bhumi.bhumi.models.Update;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Event> events;
-    private final Update.OnListFragmentInteractionListener listener;
+    private final List<Meetup> events;
+    private final Meetup.OnListFragmentInteractionListener listener;
     private final Context context;
 
-    public MyEventRecyclerViewAdapter(List<Event> mEvents, Update.OnListFragmentInteractionListener mListener, Context mContext) {
+    public MyEventRecyclerViewAdapter(List<Meetup> mEvents, Meetup.OnListFragmentInteractionListener mListener, Context mContext) {
         events = mEvents;
         listener = mListener;
         context = mContext;
@@ -45,22 +47,22 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.event = events.get(position);
-        long epochTime = holder.event.getDate();
+        holder.meetup = events.get(position);
+        long epochTime = Calendar.getInstance().getTimeInMillis();
         DateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat time = new SimpleDateFormat("HH:mm");
-        holder.titleView.setText(holder.event.getTitle());
-        holder.contentView.setText(holder.event.getContent());
-        holder.cityView.setText(holder.event.getCity());
+        holder.titleView.setText(holder.meetup.getName());
+        holder.contentView.setText(holder.meetup.getInfo());
+        holder.cityView.setText(holder.meetup.getCity());
 
         holder.dateView.setText(date.format(epochTime));
         holder.timeView.setText(time.format(epochTime));
-        Glide.with(this.context).load(holder.event.getImageUrl()).into(holder.imageView);
+        Glide.with(this.context).load(holder.meetup.getImageUrl()).into(holder.imageView);
 
         holder.registerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onRegisterFragmentInteraction(holder.event);
+                listener.onRegisterFragmentInteraction(holder.meetup);
             }
         });
 
@@ -71,7 +73,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
                 if (null != listener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    listener.onListFragmentInteraction(holder.event);
+                    listener.onListFragmentInteraction(holder.meetup);
                 }
             }
         });
@@ -79,13 +81,14 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         holder.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onShareButtonClickedFragmentInteracton(holder.event);
+                listener.onShareButtonClickedFragmentInteracton(holder.meetup);
             }
         });
+
         holder.contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onContactButtonClickedFragmentInteraction(holder.event);
+                listener.onContactButtonClickedFragmentInteraction(holder.meetup);
             }
         });
     }
@@ -106,7 +109,7 @@ public class MyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyEventRecy
         public final TextView timeView;
         public final ImageView imageView;
         public final Button shareButton;
-        public Event event;
+        public  Meetup meetup;
 
         public ViewHolder(View view) {
             super(view);

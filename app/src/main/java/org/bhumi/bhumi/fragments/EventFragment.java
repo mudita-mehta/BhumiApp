@@ -16,6 +16,7 @@ import org.bhumi.bhumi.R;
 import org.bhumi.bhumi.adapters.MyEventRecyclerViewAdapter;
 import org.bhumi.bhumi.api.ServiceProvider;
 import org.bhumi.bhumi.models.Event;
+import org.bhumi.bhumi.models.Meetup;
 import org.bhumi.bhumi.models.Update;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ import retrofit2.Retrofit;
 
 public class EventFragment extends Fragment{
 
-    private Update.OnListFragmentInteractionListener mListener;
-    private ArrayList<Event> mEvents = null;
+    private Meetup.OnListFragmentInteractionListener mListener;
+    private ArrayList<Meetup> mEvents = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -35,7 +36,7 @@ public class EventFragment extends Fragment{
     public EventFragment() {
 
         //initialise the ArrayList for the mEvents
-        mEvents = new ArrayList<Event>();
+        mEvents = new ArrayList<Meetup>();
 
     }
 
@@ -68,7 +69,7 @@ public class EventFragment extends Fragment{
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(mEvents, mListener,getContext()));
+            recyclerView.setAdapter(new MyEventRecyclerViewAdapter(mEvents, mListener, getContext()));
         }
 
         return view;
@@ -83,7 +84,7 @@ public class EventFragment extends Fragment{
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof Update.OnListFragmentInteractionListener) {
-            mListener = (Update.OnListFragmentInteractionListener) context;
+            mListener = (Meetup.OnListFragmentInteractionListener) context;
         }
     }
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import org.bhumi.bhumi.models.Event;
+import org.bhumi.bhumi.models.MeetUps;
+import org.bhumi.bhumi.models.Meetup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,21 +46,25 @@ public class ServiceProvider {
         return mServiceProvider;
     }
 
-    public ArrayList<Event> fetchAllEvents() {
+    public ArrayList<Meetup> fetchAllEvents() {
 
         try {
 
             EventService eventService = retrofit.create(EventService.class);
 
-            Call<List<Event>> eventsListCall = eventService.getAllEvents();
+            Call<MeetUps> eventsListCall = eventService.getAllEvents();
 
             Log.d(TAG, "called before");
 
-            List<Event> events = eventsListCall.execute().body();
+            MeetUps meetups = eventsListCall.execute().body();
+
+            if (meetups.getSuccess() == false) {
+                throw new Exception("request failed");
+            }
 
             Log.d(TAG, "called");
 
-            return (ArrayList<Event>) events;
+            return (ArrayList<Meetup>)meetups.getMeetups();
 
         } catch(Exception e) {
 
